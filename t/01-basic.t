@@ -13,6 +13,8 @@ is $bot->tell_direct('digest GAATTC ecori'), 'G AATTC';
 
 like $bot->tell_direct('digest GAATTC Foo'), qr/.*is not a valid.*/;
 
+is $bot->tell_direct('digest MAAELL Hcl'), 'M A A E L L';
+
 is $bot->tell_direct('digest MAAELL hcl'), 'M A A E L L';
 
 like $bot->tell_direct('digest MAAELL foo'), qr/.*is not a valid.*/;

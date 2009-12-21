@@ -32,6 +32,7 @@ sub digest_protein {
 
     state $specificities = [ keys %{Bio::Protease->Specificities} ];
 
+    $enzyme = lc $enzyme;
     unless ( $enzyme ~~ @$specificities ) {
         return "$enzyme is not a valid Protease. See http://search.cpan.org/perldoc?Bio::Protease";
     }
