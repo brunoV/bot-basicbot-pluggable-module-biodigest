@@ -27,6 +27,19 @@ sub told {
 
 }
 
+=method digest
+
+    digest <seq> <enzyme>
+
+Digest C<seq> with C<enzyme>. DNA digestion is done using
+L<Bio::Restriction::Analysis>, and protein digestion with
+L<Bio::Protease>. See their respective docs for a list of available
+enzymes. Casing doesn't matter.
+
+Returns a list of fragments after being cut but the enzyme specified.
+
+=cut
+
 sub digest_protein {
     my ($seq, $enzyme) = @_;
 
@@ -119,41 +132,9 @@ __END__
 
 =head1 DESCRIPTION
 
-This plugin will give your L<Bot::BasicBot::Pluggable> bot the ability
-to perform the most common conversions and analysis on DNA/RNA/Protein
-sequences.
+This L<Bot::BasicBot::Pluggable::Module> plugin will allow your bot to
+digest protein and DNA sequences with a large set of different enzymes.
 
 The bot should always be addressed directly.
-
-=head1 NESTABLE COMMANDS
-
-Whenever it makes sense, commands can be nested. If one command returns
-a DNA sequence, it can be put as an argument of an outer command, as so:
-
-    command1 command2 <seq>
-
-This is parsed as:
-
-    command1( command2( <seq> ) )
-
-For example, you can do:
-
-    composition complement GGGGGG
-    C: 100.0%
-
-However, currently only the innermost command can take optional
-arguments. So this:
-
-    translate reverse GATTCCG 2
-
-Will be parsed as:
-
-    translate( reverse GATTCCG 2 )
-
-instead of:
-
-    translate( reverse(GATTCCG), 2 )
-
-If the need arises, it'll be fixed in the future.
 
 =cut
